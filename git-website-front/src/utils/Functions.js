@@ -1,4 +1,4 @@
-export default function formatDate(iso) {
+export function formatDate(iso) {
   const date = new Date(iso);
 
   const options = {
@@ -13,4 +13,13 @@ export default function formatDate(iso) {
   };
 
   return date.toLocaleString("en-US", options);
+}
+export function formatLinks(linkHeader) {
+  const linkRegex = /<([^>]+)>;\s*rel="([^"]+)"/g;
+  let matches;
+  let links = [];
+  while ((matches = linkRegex.exec(linkHeader)) !== null) {
+    links.push({ url: matches[1], rel: matches[2] });
+  }
+  return links;
 }

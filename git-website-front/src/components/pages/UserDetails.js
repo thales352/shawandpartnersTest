@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "../../assets/styles/user_details.module.css";
 import Paginate from "../common/Paginate";
-import formatDate from "../../utils/Functions";
+import { formatDate } from "../../utils/Functions";
 
 export default function Details() {
   const { login } = useParams();
