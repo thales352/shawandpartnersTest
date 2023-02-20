@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Home() {
+  const { since } = useParams() || 0;
   const [users, setUsers] = useState([]);
   const [link, setlink] = useState([]);
 
   useEffect(() => {
     async function getUsers() {
       const response = await fetch(
-        "https://git-resourses.onrender.com/api/users?since=0"
+        `https://git-resourses.onrender.com/api/users?since=${since}`
       );
       const { data, link } = await response.json();
       setUsers(data);
@@ -26,7 +27,6 @@ export default function Home() {
             <Link
               to={{
                 pathname: `/user/${user.login}`,
-                state: { userId: user.id },
               }}
             >
               {user.id} - {user.login}
