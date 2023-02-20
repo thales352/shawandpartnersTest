@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styles from "../../assets/styles/user_details.module.css";
+import Paginate from "../common/Paginate";
+import formatDate from "../../utils/Functions";
 
 export default function Details() {
   const { login } = useParams();
   const [user, setUser] = useState(null);
   const [repos, setRepos] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     async function getUser() {
@@ -28,17 +33,26 @@ export default function Details() {
     getRepos();
   }, [login]);
 
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = repos.slice(indexOfFirstItem, indexOfLastItem);
+
   if (!user) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
+    <div className={styles.all}>
       <h1>User Details</h1>
-      <div>ID: {user.id}</div>
-      <div>Login: {user.login}</div>
-      <div>Profile URL: {user.html_url}</div>
-      <div>Creation Date: {user.created_at}</div>
+      <div className={styles.card}>
+        <p>ID: {user.id}</p>
+        <p>Login: {user.login}</p>
+        <p>Profile URL: {user.html_url}</p>
+        <p>Creation Date: {formatDate(user.created_at)}</p>
+      </div>
       <h2>Public Repositories</h2>
       <table>
         <thead>
@@ -49,7 +63,7 @@ export default function Details() {
           </tr>
         </thead>
         <tbody>
-          {repos.map((repo) => (
+          {currentItems.map((repo) => (
             <tr key={repo.id}>
               <td>{repo.id}</td>
               <td>{repo.name}</td>
@@ -66,6 +80,11 @@ export default function Details() {
           ))}
         </tbody>
       </table>
+      <Paginate
+        itemsPerPage={itemsPerPage}
+        totalItems={repos.length}
+        paginate={paginate}
+      />
     </div>
   );
 }

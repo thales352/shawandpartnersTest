@@ -1,0 +1,66 @@
+* {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.all {
+  padding: 30px;
+}
+.card p {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  /* Hide the table headers on small screens */
+  thead {
+    display: none;
+  }
+
+  /* Make the table cells stack vertically on small screens */
+  tr {
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+  }
+
+  td {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+  }
+
+  td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-right: 10px;
+    font-weight: bold;
+    text-align: left;
+  }
+}
