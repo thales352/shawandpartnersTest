@@ -29,6 +29,7 @@
 }
 .border:hover {
   border: 1px solid white;
+  cursor: pointer;
 }
 h2 {
   font-size: 1.5rem;

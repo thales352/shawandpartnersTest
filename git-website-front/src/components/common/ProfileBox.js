@@ -1,5 +1,6 @@
 import { useState } from "react";
 import style from "../../assets/styles/profile-box.module.css";
+import { Link } from "react-router-dom";
 
 const ProfileBox = ({ user }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -27,11 +28,13 @@ const ProfileBox = ({ user }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={style.border}>
-        <h2>
-          {user.id} - {user.login}
-        </h2>
-      </div>
+      <Link to={`/user/${user.login}`}>
+        <div className={style.border}>
+          <h2>
+            {user.id} - {user.login}
+          </h2>
+        </div>
+      </Link>
     </li>
   );
 };
