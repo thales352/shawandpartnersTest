@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import ProfileBox from "../common/ProfileBox";
 import Paginate from "../common/Paginate";
 import styles from "../../assets/styles/user_list.module.css";
-import { formatLinks } from "../../utils/Functions";
 
 export default function Home() {
   const { since } = useParams() || 0;
@@ -19,7 +18,7 @@ export default function Home() {
       );
       const { data, link } = await response.json();
       setUsers(data);
-      setlink(formatLinks(link));
+      setlink(link);
     }
     getUsers();
   }, []);
