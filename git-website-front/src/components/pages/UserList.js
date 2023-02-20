@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import ProfileBox from "../common/ProfileBox";
+import Paginate from "../common/Paginate";
+import styles from "../../assets/styles/user_list.module.css";
 
 export default function Home() {
   const { since } = useParams() || 0;
   const [users, setUsers] = useState([]);
   const [link, setlink] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     async function getUsers() {
@@ -13,27 +18,34 @@ export default function Home() {
       );
       const { data, link } = await response.json();
       setUsers(data);
+      console.log(data);
       setlink(link);
     }
     getUsers();
   }, []);
 
-  return (
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
+
+  return !users ? (
+    <div>Loading...</div>
+  ) : (
     <div>
       <h1>Users</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            <Link
-              to={{
-                pathname: `/user/${user.login}`,
-              }}
-            >
-              {user.id} - {user.login}
-            </Link>
-          </li>
+      <ul className={styles.cards}>
+        {currentItems.map((user) => (
+          <ProfileBox user={user}></ProfileBox>
         ))}
       </ul>
+      <Paginate
+        itemsPerPage={itemsPerPage}
+        totalItems={users.length}
+        paginate={paginate}
+      />
       <p>{link}</p>
     </div>
   );

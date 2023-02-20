@@ -1,0 +1,42 @@
+.card {
+  height: 300px;
+  width: 200px;
+  border-radius: 10px;
+  transition: background 0.8s;
+  overflow: hidden;
+  box-shadow: 0 70px 63px -60px #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  -webkit-transition: background 0.8s;
+  -moz-transition: background 0.8s;
+  -ms-transition: background 0.8s;
+  -o-transition: background 0.8s;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.border {
+  height: 297px;
+  width: 197px;
+  background: transparent;
+  border-radius: 10px;
+  transition: border 1s;
+  position: relative;
+}
+.border:hover {
+  border: 1px solid white;
+}
+h2 {
+  font-size: 1.5rem;
+  border-radius: 10px;
+  background: #000000;
+  padding: 5px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white;
+  margin: 10px;
+  transition: opacity 1s;
+}

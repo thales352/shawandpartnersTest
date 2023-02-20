@@ -1,0 +1,42 @@
+.nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.list {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+}
+.list-item {
+  font-family: "Noto Sans JP", sans-serif;
+  margin: 20px;
+  width: 30px;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+.liclick {
+  padding: 10px;
+  text-align: center;
+
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  font-family: "Noto Sans JP", sans-serif;
+  margin: 20px;
+  width: 30px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.list-item:hover {
+  font-size: 1.5rem;
+}
+.button {
+  cursor: pointer;
+}
